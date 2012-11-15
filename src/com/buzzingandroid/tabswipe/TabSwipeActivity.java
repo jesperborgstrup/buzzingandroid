@@ -20,7 +20,7 @@ public abstract class TabSwipeActivity extends SherlockFragmentActivity {
     private TabsAdapter adapter;
   
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         /*
          * Create the ViewPager and our custom adapter
          */
