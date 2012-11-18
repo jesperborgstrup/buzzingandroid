@@ -510,7 +510,7 @@ public class QueryBuilder {
 	}
 	
 	/**
-	 * Updates any rowh that matches the defined selection, with the specified values.
+	 * Updates any row that matches the defined selection, with the specified values.
 	 * @param context
 	 * @param values
 	 * @param uri
@@ -604,7 +604,7 @@ public class QueryBuilder {
 	 * Append the objects in the array to the selection, each separated by a comma
 	 * @param objects
 	 */
-	public void joinInSelection( Object[] objects ) {
+	private void joinInSelection( Object[] objects ) {
 		for ( int i = 0; i < objects.length; i++ ) {
 			selection.append( objects[i] );
 			if ( i != objects.length - 1 ) {
@@ -616,7 +616,7 @@ public class QueryBuilder {
 	 * Append the longs in the array to the selection, each separated by a comma
 	 * @param objects
 	 */
-	public void joinInSelection( long[] objects ) {
+	private void joinInSelection( long[] objects ) {
 		for ( int i = 0; i < objects.length; i++ ) {
 			selection.append( objects[i] );
 			if ( i != objects.length - 1 ) {
@@ -628,7 +628,7 @@ public class QueryBuilder {
 	 * Append the integers in the array to the selection, each separated by a comma
 	 * @param objects
 	 */
-	public void joinInSelection( int[] objects ) {
+	private void joinInSelection( int[] objects ) {
 		for ( int i = 0; i < objects.length; i++ ) {
 			selection.append( objects[i] );
 			if ( i != objects.length - 1 ) {
