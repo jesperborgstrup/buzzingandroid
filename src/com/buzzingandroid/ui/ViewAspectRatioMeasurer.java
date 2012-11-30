@@ -66,9 +66,9 @@ public class ViewAspectRatioMeasurer {
 	 */
 	public void measure(int widthMeasureSpec, int heightMeasureSpec, double aspectRatio) {
 		int widthMode = MeasureSpec.getMode( widthMeasureSpec );
-		int widthSize = MeasureSpec.getSize( widthMeasureSpec );
+		int widthSize = widthMode == MeasureSpec.UNSPECIFIED ? Integer.MAX_VALUE : MeasureSpec.getSize( widthMeasureSpec );
 		int heightMode = MeasureSpec.getMode( heightMeasureSpec );
-		int heightSize = MeasureSpec.getSize( heightMeasureSpec );
+		int heightSize = heightMode == MeasureSpec.UNSPECIFIED ? Integer.MAX_VALUE : MeasureSpec.getSize( heightMeasureSpec );
 		
 		if ( heightMode == MeasureSpec.EXACTLY && widthMode == MeasureSpec.EXACTLY ) {
 			/* 
