@@ -74,8 +74,8 @@ public class ViewAspectRatioMeasurer {
 			/* 
 			 * Possibility 1: Both width and height fixed
 			 */
-			measuredWidth = widthMode;
-			measuredHeight = heightMode;
+			measuredWidth = widthSize;
+			measuredHeight = heightSize;
 			
 		} else if ( heightMode == MeasureSpec.EXACTLY ) {
 			/*
