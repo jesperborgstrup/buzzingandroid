@@ -26,7 +26,8 @@ public class PDFTools {
 	private static final String HTML_MIME_TYPE = "text/html";
 	
 	/**
-	 * Ask the user whether to download the PDF or start Google Docs/Drive online PDF reader.<br />
+	 * If a PDF reader is installed, download the PDF file and open it in a reader. 
+	 * Otherwise ask the user if he/she wants to view it in the Google Drive online PDF reader.<br />
 	 * <br />
 	 * <b>BEWARE:</b> This method
 	 * @param context
@@ -47,7 +48,7 @@ public class PDFTools {
 	 * @param pdfUrl
 	 */
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
-	private static void downloadAndOpenPDF(final Context context, final String pdfUrl) {
+	public static void downloadAndOpenPDF(final Context context, final String pdfUrl) {
 		// Get filename
 		final String filename = pdfUrl.substring( pdfUrl.lastIndexOf( "/" ) + 1 );
 		// The place where the downloaded PDF file will be put
@@ -58,7 +59,10 @@ public class PDFTools {
 			return;
 		}
 
+		// Show progress dialog while downloading
 		final ProgressDialog progress = ProgressDialog.show( context, context.getString( R.string.pdf_show_local_progress_title ), context.getString( R.string.pdf_show_local_progress_content ), true );
+		
+		// Create the download request
 		DownloadManager.Request r = new DownloadManager.Request( Uri.parse( pdfUrl ) );
 		r.setDestinationInExternalFilesDir( context, Environment.DIRECTORY_DOWNLOADS, filename );
 		final DownloadManager dm = (DownloadManager) context.getSystemService( Context.DOWNLOAD_SERVICE );
@@ -84,6 +88,8 @@ public class PDFTools {
 			}
 		};
 		context.registerReceiver( onComplete, new IntentFilter( DownloadManager.ACTION_DOWNLOAD_COMPLETE ) );
+		
+		// Enqueue the request
 		dm.enqueue( r );
 	}
 	
