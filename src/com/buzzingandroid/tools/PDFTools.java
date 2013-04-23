@@ -139,7 +139,8 @@ public class PDFTools {
 	 */
 	public static boolean isPDFSupported( Context context ) {
 		Intent i = new Intent( Intent.ACTION_VIEW );
-		i.setType( PDF_MIME_TYPE );
+		final File tempFile = new File( context.getExternalFilesDir( Environment.DIRECTORY_DOWNLOADS ), "test.pdf" );
+		i.setDataAndType( Uri.fromFile( tempFile ), PDF_MIME_TYPE );
 		return context.getPackageManager().queryIntentActivities( i, PackageManager.MATCH_DEFAULT_ONLY ).size() > 0;
 	}
 
