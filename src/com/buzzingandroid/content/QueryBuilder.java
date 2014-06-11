@@ -353,9 +353,9 @@ public class QueryBuilder {
 		 * First build the selection string
 		 */
 		StringBuilder sb = new StringBuilder();
-		sb.append( selection );
 		if ( searchQueryTokens.length > 0 && searchColumns.length > 0 ) {
 			readySelection();
+			sb.append( selection );
 			/*
 			 * Build single search selection
 			 */
@@ -379,6 +379,8 @@ public class QueryBuilder {
 			}
 			
 			sb.append( sb2 );
+		} else {
+			sb.append( selection );
 		}
 		
 		String selectionString = sb.length() == 0 ? null : sb.toString();
