@@ -95,7 +95,7 @@ public class QueryBuilder {
 	 */
 	public QueryBuilder whereColumnEquals( String column, Object value ) {
 		readySelection();
-		selection.append( column ).append( "=?" );
+		selection.append(column).append(value == null ? " IS ?" : "=?");
 		selectionArgs.add( value == null ? null : value.toString() );
 		return this;
 	}
@@ -109,7 +109,7 @@ public class QueryBuilder {
 	 */
 	public QueryBuilder whereColumnNotEquals( String column, Object value ) {
 		readySelection();
-		selection.append( column ).append( "!=?" );
+		selection.append(column).append(value == null ? " IS NOT ?" : "!=?");
 		selectionArgs.add( value == null ? null : value.toString() );
 		return this;
 	}
