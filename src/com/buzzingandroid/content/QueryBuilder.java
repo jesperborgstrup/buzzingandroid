@@ -95,7 +95,7 @@ public class QueryBuilder {
 	 */
 	public QueryBuilder whereColumnEquals( String column, Object value ) {
 		readySelection();
-		selection.append( column ).append( "=?" );
+		selection.append(column).append(value == null ? " IS ?" : "=?");
 		selectionArgs.add( value == null ? null : value.toString() );
 		return this;
 	}
@@ -109,7 +109,7 @@ public class QueryBuilder {
 	 */
 	public QueryBuilder whereColumnNotEquals( String column, Object value ) {
 		readySelection();
-		selection.append( column ).append( "!=?" );
+		selection.append(column).append(value == null ? " IS NOT ?" : "!=?");
 		selectionArgs.add( value == null ? null : value.toString() );
 		return this;
 	}
@@ -353,9 +353,9 @@ public class QueryBuilder {
 		 * First build the selection string
 		 */
 		StringBuilder sb = new StringBuilder();
-		sb.append( selection );
 		if ( searchQueryTokens.length > 0 && searchColumns.length > 0 ) {
 			readySelection();
+			sb.append( selection );
 			/*
 			 * Build single search selection
 			 */
@@ -379,6 +379,8 @@ public class QueryBuilder {
 			}
 			
 			sb.append( sb2 );
+		} else {
+			sb.append( selection );
 		}
 		
 		String selectionString = sb.length() == 0 ? null : sb.toString();
