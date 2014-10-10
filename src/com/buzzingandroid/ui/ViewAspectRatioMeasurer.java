@@ -81,15 +81,15 @@ public class ViewAspectRatioMeasurer {
 			/*
 			 * Possibility 2: Width dynamic, height fixed
 			 */
-			measuredWidth = (int) Math.min( widthSize, heightSize * aspectRatio );
-			measuredHeight = (int) (measuredWidth / aspectRatio);
+			measuredHeight = (int) Math.min( heightSize, widthSize / aspectRatio );
+			measuredWidth = (int) (measuredHeight * aspectRatio);
 			
 		} else if ( widthMode == MeasureSpec.EXACTLY ) {
 			/*
 			 * Possibility 3: Width fixed, height dynamic
 			 */
-			measuredHeight = (int) Math.min( heightSize, widthSize / aspectRatio );
-			measuredWidth = (int) (measuredHeight * aspectRatio);
+			measuredWidth = (int) Math.min( widthSize, heightSize * aspectRatio );
+			measuredHeight = (int) (measuredWidth / aspectRatio);
 			
 		} else {
 			/* 
